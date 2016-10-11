@@ -1703,8 +1703,8 @@ function get_post_reply_link($args = array(), $post = null) {
 	$defaults = array(
 		'add_below'  => 'post',
 		'respond_id' => 'respond',
-		'reply_text' => __('Leave a Comment'),
-		'login_text' => __('Log in to leave a Comment'),
+		'reply_text' => __('评论'),
+		'login_text' => __('登陆并留言'),
 		'before'     => '',
 		'after'      => '',
 	);
@@ -1864,8 +1864,8 @@ function comment_id_fields( $id = 0 ) {
 function comment_form_title( $noreplytext = false, $replytext = false, $linktoparent = true ) {
 	global $comment;
 
-	if ( false === $noreplytext ) $noreplytext = __( 'Leave a Reply' );
-	if ( false === $replytext ) $replytext = __( 'Leave a Reply to %s' );
+	if ( false === $noreplytext ) $noreplytext = __( '留言' );
+	if ( false === $replytext ) $replytext = __( '回复给 %s' );
 
 	$replytoid = isset($_GET['replytocom']) ? (int) $_GET['replytocom'] : 0;
 
@@ -2178,15 +2178,15 @@ function comment_form( $args = array(), $post_id = null ) {
 	$html_req = ( $req ? " required='required'" : '' );
 	$html5    = 'html5' === $args['format'];
 	$fields   =  array(
-		'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+		'author' => '<p class="comment-form-author">' . '<label for="author">' . __( '大名儿' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
 		            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" maxlength="245"' . $aria_req . $html_req . ' /></p>',
-		'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
+		'email'  => '<p class="comment-form-email"><label for="email">' . __( '邮件地址' ) . ( $req ? ' <span class="required">*</span>' : '' ) . '</label> ' .
 		            '<input id="email" name="email" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" maxlength="100" aria-describedby="email-notes"' . $aria_req . $html_req  . ' /></p>',
 		'url'    => '<p class="comment-form-url"><label for="url">' . __( 'Website' ) . '</label> ' .
 		            '<input id="url" name="url" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" maxlength="200" /></p>',
 	);
 
-	$required_text = sprintf( ' ' . __('Required fields are marked %s'), '<span class="required">*</span>' );
+	$required_text = sprintf( ' ' . __('带%s项必填'), '<span class="required">*</span>' );
 
 	/**
 	 * Filters the default comment form fields.
@@ -2198,7 +2198,7 @@ function comment_form( $args = array(), $post_id = null ) {
 	$fields = apply_filters( 'comment_form_default_fields', $fields );
 	$defaults = array(
 		'fields'               => $fields,
-		'comment_field'        => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>',
+		'comment_field'        => '<p class="comment-form-comment"><label for="comment">' . _x( '留言', 'noun' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>',
 		/** This filter is documented in wp-includes/link-template.php */
 		'must_log_in'          => '<p class="must-log-in">' . sprintf(
 		                              /* translators: %s: login URL */
@@ -2215,7 +2215,7 @@ function comment_form( $args = array(), $post_id = null ) {
 		                              $user_identity,
 		                              wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) )
 		                          ) . '</p>',
-		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ) . '</span>'. ( $req ? $required_text : '' ) . '</p>',
+		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . __( '您的邮件地址不会公开' ) . '</span>'. ( $req ? $required_text : '' ) . '</p>',
 		'comment_notes_after'  => '',
 		'action'               => site_url( '/wp-comments-post.php' ),
 		'id_form'              => 'commentform',
@@ -2223,14 +2223,14 @@ function comment_form( $args = array(), $post_id = null ) {
 		'class_form'           => 'comment-form',
 		'class_submit'         => 'submit',
 		'name_submit'          => 'submit',
-		'title_reply'          => __( 'Leave a Reply' ),
-		'title_reply_to'       => __( 'Leave a Reply to %s' ),
+		'title_reply'          => __( '我要留言' ),
+		'title_reply_to'       => __( '回复给 %s' ),
 		'title_reply_before'   => '<h3 id="reply-title" class="comment-reply-title">',
 		'title_reply_after'    => '</h3>',
 		'cancel_reply_before'  => ' <small>',
 		'cancel_reply_after'   => '</small>',
-		'cancel_reply_link'    => __( 'Cancel reply' ),
-		'label_submit'         => __( 'Post Comment' ),
+		'cancel_reply_link'    => __( '取消' ),
+		'label_submit'         => __( '发送' ),
 		'submit_button'        => '<input name="%1$s" type="submit" id="%2$s" class="%3$s" value="%4$s" />',
 		'submit_field'         => '<p class="form-submit">%1$s %2$s</p>',
 		'format'               => 'xhtml',

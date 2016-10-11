@@ -39,9 +39,9 @@ if ( post_password_required() )
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="navigation" role="navigation">
-			<h1 class="assistive-text section-heading"><?php _e( 'Comment navigation', 'twentytwelve' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'twentytwelve' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'twentytwelve' ) ); ?></div>
+			<h1 class="assistive-text section-heading"><?php _e( '留言', 'twentytwelve' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; 旧的留言', 'twentytwelve' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( '新的留言 &rarr;', 'twentytwelve' ) ); ?></div>
 		</nav>
 		<?php endif; // check for comment navigation ?>
 
@@ -50,7 +50,7 @@ if ( post_password_required() )
 		 * But we only want the note on posts and pages that had comments in the first place.
 		 */
 		if ( ! comments_open() && get_comments_number() ) : ?>
-		<p class="nocomments"><?php _e( 'Comments are closed.' , 'twentytwelve' ); ?></p>
+		<p class="nocomments"><?php _e( '评论已关闭.' , 'twentytwelve' ); ?></p>
 		<?php endif; ?>
 
 	<?php endif; // have_comments() ?>
